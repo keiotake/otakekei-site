@@ -130,7 +130,7 @@
     heroBg.appendChild(canvas);
     var ctx = canvas.getContext("2d");
     var W, H, dots = [];
-    var COLORS = ["240,140,30", "250,199,117", "133,183,235"];
+    var COLORS = ["133,183,235", "170,215,255", "250,199,117"];
 
     function resize() {
       W = canvas.width = hero.offsetWidth;
@@ -139,40 +139,75 @@
     resize();
     window.addEventListener("resize", resize);
 
-    var N = Math.min(80, Math.floor(W / 16));
+    // 海中: 浮遊するプランクトンの粒
+    var N = Math.min(60, Math.floor(W / 22));
     for (var i = 0; i < N; i++) {
       dots.push({
-        x: Math.random() * 1,
-        y: Math.random() * 1,
-        r: 0.6 + Math.random() * 2.2,
-        vx: 0.02 + Math.random() * 0.08,
-        vy: -(0.01 + Math.random() * 0.05),
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.5 + Math.random() * 1.8,
+        vx: 0.015 + Math.random() * 0.05,
+        vy: -(0.005 + Math.random() * 0.02),
         c: COLORS[(Math.random() * COLORS.length) | 0],
         ph: Math.random() * Math.PI * 2,
-        sp: 0.4 + Math.random() * 1.2
+        sp: 0.3 + Math.random() * 1.0
       });
     }
+
+    // 海中: 立ち昇る泡
+    var bubbles = [];
+    var NB = Math.min(26, Math.floor(W / 56));
+    function spawnBubble(b, first) {
+      b.x = Math.random();
+      b.y = first ? Math.random() : 1.04;
+      b.r = 1.5 + Math.random() * 3.5;
+      b.vy = 0.06 + Math.random() * 0.12;
+      b.wob = 0.004 + Math.random() * 0.012;
+      b.ph = Math.random() * Math.PI * 2;
+      return b;
+    }
+    for (var j = 0; j < NB; j++) bubbles.push(spawnBubble({}, true));
 
     var running = true, t = 0;
     function frame() {
       if (running) {
         t += 0.016;
         ctx.clearRect(0, 0, W, H);
+
         for (var i = 0; i < dots.length; i++) {
           var d = dots[i];
           d.x += d.vx / 100;
           d.y += d.vy / 100;
           if (d.x > 1.02) d.x = -0.02;
           if (d.y < -0.02) d.y = 1.02;
-          var a = 0.12 + 0.45 * Math.abs(Math.sin(d.ph + t * d.sp));
+          var a = 0.10 + 0.38 * Math.abs(Math.sin(d.ph + t * d.sp));
           ctx.beginPath();
           ctx.fillStyle = "rgba(" + d.c + "," + a.toFixed(3) + ")";
           ctx.shadowColor = "rgba(" + d.c + ",0.9)";
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 6;
           ctx.arc(d.x * W, d.y * H, d.r, 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.shadowBlur = 0;
+
+        for (var k = 0; k < bubbles.length; k++) {
+          var b = bubbles[k];
+          b.y -= b.vy / 100;
+          var bx = b.x + Math.sin(b.ph + t * 1.4) * b.wob;
+          if (b.y < -0.04) spawnBubble(b, false);
+          var px = bx * W, py = b.y * H;
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(190,225,255,0.5)";
+          ctx.lineWidth = 1;
+          ctx.fillStyle = "rgba(190,225,255,0.08)";
+          ctx.arc(px, py, b.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(255,255,255,0.55)";
+          ctx.arc(px - b.r * 0.35, py - b.r * 0.35, b.r * 0.22, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
       requestAnimationFrame(frame);
     }
@@ -285,7 +320,7 @@
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
   });
   gsap.to(".sunrise", {
-    y: 120, ease: "none",
+    y: -90, ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
   });
 

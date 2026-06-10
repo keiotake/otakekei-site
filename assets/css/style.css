@@ -122,36 +122,63 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 55%, #122544 100%);
+  background: linear-gradient(180deg, #11456E 0%, #0C2C4E 38%, #081A33 70%, #060F1F 100%);
   overflow: hidden;
 }
 
 .hero-bg { position: absolute; inset: 0; }
+/* 水面の上に滲む太陽（海中から見上げた光） */
 .sunrise {
   position: absolute;
-  left: 50%; bottom: -42vh;
-  width: 130vh; height: 130vh;
-  transform: translateX(-18%);
+  left: 58%; top: -34vh;
+  width: 110vh; height: 110vh;
+  transform: translateX(-50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240, 140, 30, 0.5) 0%, rgba(240, 140, 30, 0.16) 38%, transparent 68%);
+  background: radial-gradient(circle, rgba(250, 199, 117, 0.55) 0%, rgba(240, 140, 30, 0.22) 36%, rgba(133, 183, 235, 0.08) 58%, transparent 70%);
   animation: sunrise-pulse 9s ease-in-out infinite;
 }
 @keyframes sunrise-pulse {
-  0%, 100% { opacity: 0.85; transform: translateX(-18%) scale(1); }
-  50% { opacity: 1; transform: translateX(-18%) scale(1.05); }
+  0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
 }
+/* 水面（揺れる明るい境界線） */
 .horizon-line {
   position: absolute;
-  left: 0; right: 0; bottom: 18vh;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(250, 199, 117, 0.5) 35%, rgba(250, 199, 117, 0.08) 80%, transparent);
+  left: -5%; right: -5%; top: 7vh;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(190, 230, 255, 0.45) 30%, rgba(190, 230, 255, 0.15) 70%, transparent);
+  filter: blur(1px);
+  animation: surface-sway 7s ease-in-out infinite;
 }
+@keyframes surface-sway {
+  0%, 100% { transform: translateX(-1.5%) scaleY(1); opacity: 0.7; }
+  50% { transform: translateX(1.5%) scaleY(1.8); opacity: 1; }
+}
+/* 差し込む光のカーテン（ゴッドレイ） */
+.ray {
+  position: absolute;
+  top: -12vh;
+  height: 92vh;
+  background: linear-gradient(180deg, rgba(170, 215, 255, 0.20) 0%, rgba(170, 215, 255, 0.06) 55%, transparent 100%);
+  filter: blur(7px);
+  transform: skewX(-13deg);
+  transform-origin: top center;
+  animation: ray-sway 12s ease-in-out infinite;
+}
+.ray-1 { left: 14%; width: 13vw; }
+.ray-2 { left: 36%; width: 7vw; opacity: 0.75; animation-delay: -4s; }
+.ray-3 { left: 58%; width: 17vw; opacity: 0.55; animation-delay: -8s; animation-duration: 15s; }
+@keyframes ray-sway {
+  0%, 100% { transform: skewX(-13deg) translateX(0); opacity: 0.5; }
+  50% { transform: skewX(-8deg) translateX(2.5vw); opacity: 0.95; }
+}
+/* 漂う水流のライン */
 .wave {
   position: absolute;
   left: -10%;
   width: 120%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(133, 183, 235, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.30), transparent);
   animation: wave-drift 12s linear infinite;
 }
 .wave-1 { bottom: 12vh; animation-duration: 14s; }
