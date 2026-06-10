@@ -201,6 +201,10 @@
     heroChars.push(splitChars(el));
   });
 
+  var INTRO_TARGETS =
+    ".hero-eyebrow, .hero-eyebrow .tick, .hero-title .char, .hero-sub, " +
+    ".hero-actions .btn, .sun-disc, .hero-portrait img, .hero-watermark, .hero-news, .scroll-cue";
+
   var introDone = false;
   var intro = gsap.timeline({
     defaults: { ease: "power4.out" },
@@ -209,6 +213,7 @@
       loader.remove();
       document.documentElement.classList.remove("is-loading");
       document.body.style.overflow = "";
+      gsap.set(INTRO_TARGETS, { clearProps: "transform,opacity,visibility" });
       ScrollTrigger.refresh();
     }
   });
@@ -216,7 +221,14 @@
   // Safety: if the tab is hidden (rAF suspended) or anything stalls,
   // jump straight to the final state so content is never stuck hidden.
   var finishIntro = function () {
-    if (!introDone) intro.progress(1);
+    if (introDone) return;
+    intro.progress(1);
+    if (!introDone) {
+      introDone = true;
+      if (loader.parentNode) loader.remove();
+      document.body.style.overflow = "";
+      gsap.set(INTRO_TARGETS, { clearProps: "transform,opacity,visibility" });
+    }
   };
   if (document.hidden) finishIntro();
   document.addEventListener("visibilitychange", function () {
