@@ -3,7 +3,9 @@
 (function () {
   "use strict";
 
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // 常にフルモーションで再生する（OSの「アニメーション効果オフ」設定は無視）。
+  // 動きを抑えたい閲覧者向けに ?calm 付きURLでのみ簡易表示にする。
+  var reduced = new URLSearchParams(window.location.search).has("calm");
   var hasGsap = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
   var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
