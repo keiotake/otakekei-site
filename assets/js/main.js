@@ -130,7 +130,7 @@
     heroBg.appendChild(canvas);
     var ctx = canvas.getContext("2d");
     var W, H, dots = [];
-    var COLORS = ["133,183,235", "170,215,255", "250,199,117"];
+    var COLORS = ["133,183,235", "170,215,255", "200,240,255"];
 
     function resize() {
       W = canvas.width = hero.offsetWidth;
