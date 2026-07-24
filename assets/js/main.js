@@ -36,6 +36,8 @@
 
   // ---------- Fallback mode (no GSAP or reduced motion) ----------
   if (!hasGsap || reduced) {
+    var loaderEl = document.getElementById("loader");
+    if (loaderEl) loaderEl.remove();
     var revealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -221,16 +223,8 @@
   })();
 
   // ---------- Loader + hero intro ----------
-  var loader = document.createElement("div");
-  loader.id = "loader";
-  loader.setAttribute("aria-hidden", "true");
-  loader.innerHTML =
-    '<div class="loader-inner">' +
-    '<p class="loader-name">OTAKE KEI</p>' +
-    '<p class="loader-sub">ITO CITY COUNCIL MEMBER</p>' +
-    '<div class="loader-bar"><span></span></div>' +
-    "</div>";
-  document.body.appendChild(loader);
+  // ローダーはHTMLに直書き済み（JS起動前に本文がちら見えするのを防ぐため）。ここでは取得のみ
+  var loader = document.getElementById("loader");
   document.documentElement.classList.add("is-loading");
 
   var heroChars = [];
