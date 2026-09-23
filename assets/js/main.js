@@ -300,8 +300,6 @@
     .from(".hero-news", { y: 40, opacity: 0, duration: 0.7 }, "-=0.7")
     .from(".scroll-cue", { opacity: 0, duration: 0.6 }, "-=0.5");
 
-  intro.timeScale(2.2);
-
   // ---------- Hero scroll parallax ----------
   gsap.to(".hero-copy", {
     y: -110, opacity: 0.25, ease: "none",
