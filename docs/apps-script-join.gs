@@ -19,6 +19,9 @@
 
 var SHEET_NAME = '応募';
 
+// 応募があったとき通知メールを送る宛先（空のままなら通知なし。カンマ区切りで複数可）
+var NOTIFY_EMAILS = '';
+
 function setup() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
@@ -48,6 +51,37 @@ function doPost(e) {
       involve, p.frequency || '', p.message || '',
       p.consent ? '同意' : ''
     ]);
+
+    // ---- 通知メール（失敗しても応募の記録は成功扱い）----
+    try {
+      if (NOTIFY_EMAILS) {
+        var mailOpts = {
+          to: NOTIFY_EMAILS,
+          subject: '【仲間募集】新しい応募：' + (p.name || 'お名前未記入') + ' さん',
+          body: [
+            'サイトの仲間募集フォームに、新しい応募が届きました。',
+            '',
+            '■お名前：' + (p.name || ''),
+            '■ふりがな：' + (p.kana || ''),
+            '■年代：' + (p.age || ''),
+            '■お住まい：' + (p.area || ''),
+            '■メール：' + (p.email || ''),
+            '■電話：' + (p.phone || ''),
+            '■応募のきっかけ：' + (p.motive || ''),
+            '■関わりたいこと：' + (involve || ''),
+            '■参加できそうな頻度：' + (p.frequency || ''),
+            '■メッセージ：',
+            (p.message || '（なし）'),
+            '',
+            '※このメールにそのまま返信すると、応募者のメールアドレス宛に届きます。'
+          ].join('\n')
+        };
+        if (p.email) { mailOpts.replyTo = p.email; }
+        MailApp.sendEmail(mailOpts);
+      }
+    } catch (mailErr) {
+      // 通知メールの失敗は無視（応募自体はシートに記録済み）
+    }
 
     return ContentService.createTextOutput('ok');
   } catch (err) {
