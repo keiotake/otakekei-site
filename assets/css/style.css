@@ -748,6 +748,123 @@ a { color: inherit; text-decoration: none; }
 }
 .activity-card:hover .activity-link { color: #fff; }
 
+/* ---- 活動報告サブセクション ---- */
+.activity-sub { margin-bottom: clamp(44px, 6vw, 72px); }
+.activity-subhead-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.activity-subtitle { color: #fff; font-size: clamp(20px, 2.4vw, 27px); font-weight: 900; line-height: 1.4; }
+.activity-subdesc { color: #93A1B5; font-size: 14px; margin-top: 8px; max-width: 640px; }
+
+/* ---- 質問と、その後 ---- */
+.q-legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.q-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.q-note { margin-top: 14px; font-size: 12px; color: #6B7A90; }
+
+.q-card {
+  border: 1px solid var(--line-dark);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.q-card:hover, .q-card[open] { border-color: rgba(14, 165, 233, 0.45); }
+.q-card summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+.q-card summary::-webkit-details-marker { display: none; }
+.q-gikai { flex: none; width: 7.5em; font-size: 11px; color: #93A1B5; letter-spacing: 0.06em; }
+.q-card-title { flex: 1; color: #fff; font-weight: 700; font-size: 15px; line-height: 1.55; }
+.q-badge {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.st-asked  { color: #93A1B5; border: 1px solid rgba(147, 161, 181, 0.5); }
+.st-review { color: #A5E3FF; border: 1px solid rgba(165, 227, 255, 0.55); }
+.st-moving { background: #0EA5E9; color: #fff; }
+.st-done   { background: #A5E3FF; color: #06283D; }
+.q-arrow { flex: none; color: var(--orange); font-weight: 700; transition: transform 0.3s var(--ease-out); }
+.q-card[open] .q-arrow { transform: rotate(45deg); }
+.q-body { padding: 2px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
+.q-row { display: flex; gap: 12px; font-size: 14px; line-height: 1.85; }
+.q-label {
+  flex: none;
+  width: 1.9em; height: 1.9em;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  font-size: 12px; font-weight: 800;
+  margin-top: 3px;
+}
+.q-q .q-label { background: rgba(14, 165, 233, 0.18); color: #A5E3FF; }
+.q-a .q-label { background: rgba(255, 255, 255, 0.08); color: #C9D3E0; }
+.q-f .q-label { background: #0EA5E9; color: #fff; }
+.q-q > span:last-child { color: #E7ECF3; }
+.q-a > span:last-child { color: #AFBACA; }
+.q-f > span:last-child { color: #A5E3FF; }
+@media (max-width: 640px) {
+  .q-card summary { flex-wrap: wrap; gap: 8px 10px; padding: 14px 15px; }
+  .q-gikai { width: auto; order: 1; }
+  .q-badge { order: 2; margin-left: auto; }
+  .q-arrow { order: 3; }
+  .q-card-title { order: 4; flex: 1 1 100%; }
+}
+
+/* ---- note 新着レール（サムネ横並び） ---- */
+.note-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.note-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--line-dark);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s;
+}
+.note-card:hover { transform: translateY(-5px); border-color: rgba(14, 165, 233, 0.6); }
+.note-thumb {
+  width: 100%;
+  aspect-ratio: 1280 / 670;
+  object-fit: cover;
+  border-radius: 9px;
+  background: rgba(14, 165, 233, 0.08);
+}
+.note-thumb-empty { display: flex; align-items: center; justify-content: center; color: #A5E3FF; font-weight: 800; font-family: var(--font-en); }
+.note-card-title {
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.note-card-date { color: #93A1B5; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.04em; }
+@media (max-width: 640px) {
+  .note-rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .note-card { flex: 0 0 72%; scroll-snap-align: start; }
+}
+
 /* ============ Join ============ */
 .join-cards {
   display: grid;

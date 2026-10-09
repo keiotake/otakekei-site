@@ -186,11 +186,37 @@
         <h2 class="section-title section-title-light">活動報告</h2>
         <p class="section-desc">議会での質問、現場の確認、市民の皆さまとの対話——伊東市議会議員としての日々を、ここで一つずつ記録していきます。</p>
       </div>
+      <div class="activity-sub" data-reveal>
+        <div class="activity-subhead">
+          <h3 class="activity-subtitle">議会での質問と、その後</h3>
+          <p class="activity-subdesc">一般質問で取り上げたテーマが、いまどこまで動いたか。進み具合をラベルで示しています。タップすると質問と市の答えが開きます。</p>
+          <div class="q-legend" aria-hidden="true">
+            <span class="q-badge st-asked">質問済み</span>
+            <span class="q-badge st-review">市が検討中</span>
+            <span class="q-badge st-moving">動き出した</span>
+            <span class="q-badge st-done">変わった！</span>
+          </div>
+        </div>
+        <div id="qList" class="q-list"></div>
+        <p class="q-note">※ラベルは議会での答弁と、その後の確認に基づいて随時更新しています。</p>
+      </div>
+
+      <div class="activity-sub" id="noteBlock" data-reveal>
+        <div class="activity-subhead activity-subhead-row">
+          <div>
+            <h3 class="activity-subtitle">noteで、本音をつづっています</h3>
+            <p class="activity-subdesc">議会だけでは伝えきれない考えや活動の裏側を、noteで発信中。新しい記事は自動でここに並びます。</p>
+          </div>
+          <a class="channel-all" href="https://note.com/otake_kei" target="_blank" rel="noopener">noteへ <span aria-hidden="true">↗</span></a>
+        </div>
+        <div id="noteRail" class="note-rail" role="list" aria-label="noteの新着記事"><p class="video-status" role="status">記事を読み込んでいます…</p></div>
+      </div>
+
       <div class="activity-list" data-reveal>
         <a class="activity-card activity-card-feature" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">
           <span class="activity-tag">UPDATES</span>
-          <h3 class="activity-title">最新の活動は、Instagramで発信中</h3>
-          <p class="activity-text">議会の報告や現場の様子は、まずInstagramでお届けしています。このページにも、これから活動の記録を順次まとめていきます。</p>
+          <h3 class="activity-title">日々の動きは、Instagramで発信中</h3>
+          <p class="activity-text">議会の報告や現場の様子は、Instagramでもお届けしています。</p>
           <span class="activity-link">Instagramを見る →</span>
         </a>
       </div>
@@ -368,6 +394,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="assets/data/questions.js?v=20261009" defer></script>
+<script src="assets/js/activity.js?v=20261009" defer></script>
 <script src="assets/js/main.js?v=20260923b" defer></script>
 <script src="assets/js/join.js" defer></script>
 </body>
