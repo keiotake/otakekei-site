@@ -4,3 +4,12 @@
 @media(max-width:768px){.channel-section{padding:45px 0;background:linear-gradient(var(--ocean) 0 280px,#fff 280px)}.channel-heading-row{display:block;margin-bottom:25px}.channel-heading-row p:not(.channel-kicker){font-size:12px}.channel-all{display:inline-block;margin-top:20px;padding:8px 14px}.video-rail{grid-auto-columns:84%;gap:16px}.video-card h3{font-size:15px}.video-dialog{padding:14px}.video-toolbar{margin-bottom:12px}}
 @media(prefers-reduced-motion:reduce){.video-thumb img{transition:none}.video-rail{scroll-behavior:auto}}
 .channel-section a:focus-visible,.channel-section button:focus-visible,.video-dialog button:focus-visible{outline:3px solid #ffbd4a;outline-offset:4px}
+
+/* スクロールバーを太く・つかみやすく。マウスで掴んで横にスライドも可能（drag-scroll.js） */
+.video-rail{scrollbar-width:auto;scrollbar-color:#0ea5e9 #dbeef7;cursor:grab}
+.video-rail::-webkit-scrollbar{height:14px}
+.video-rail::-webkit-scrollbar-track{background:#dbeef7;border-radius:999px}
+.video-rail::-webkit-scrollbar-thumb{background:#0ea5e9;border-radius:999px;border:3px solid #dbeef7}
+.video-rail::-webkit-scrollbar-thumb:hover{background:#0284c7}
+.video-rail.is-dragging{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing;user-select:none}
+@media(max-width:768px){.video-rail::-webkit-scrollbar{height:10px}}
