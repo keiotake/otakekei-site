@@ -1,6 +1,6 @@
 // 仲間募集フォームの送信処理
 // ↓ Googleスプレッドシートに紐づくGASウェブアプリのURL(/exec)をここに貼る
-var GAS_ENDPOINT = "";
+var GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycby2KsjRXcdyK7YuSR0f5u-wXeW_F9So-XLTh4E9wi57VpeOa54uromZx3r_7OdgZUN6/exec";
 
 (function () {
   "use strict";
