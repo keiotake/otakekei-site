@@ -1,0 +1,93 @@
+/* ============================================================
+   明るいデザイン（2026-10-23）
+   読み込み順: style.css → channel.css → ocean-refresh.css → このファイル
+   - 白とごく薄い空色を基本に、「政策」「仲間募集」を空色の帯にしてメリハリを出す
+   - 黄色は「変わった！」など、変化・実現を伝えたいところだけに使う
+   ============================================================ */
+:root {
+  --band: #0078c1;        /* 空色の帯（白い文字が読める濃さ） */
+  --band-soft: #e7f5fc;   /* ごく薄い空色 */
+  --sun: #ffe14d;         /* 黄色：変化・実現の印 */
+  --sun-ink: #3d3200;     /* 黄色の上の文字 */
+  --line-soft: #d3e9f2;
+}
+
+/* ---------- スマホのメニュー ----------
+   ヘッダーにぼかし（backdrop-filter）があると、画面いっぱいに開くはずのメニューが
+   ヘッダーの高さ（約70px）の中に閉じ込められて重なる。スマホ幅ではぼかしを外して白一色にする */
+@media (max-width: 900px) {
+  .site-header, .site-header.is-scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
+  .global-nav { background: #fff; }
+}
+
+/* ---------- 空色の帯（政策・仲間募集） ---------- */
+#policy, #join { background: var(--band); color: #fff; }
+#policy .section-en, #policy .section-title, #policy .section-desc,
+#join .section-en, #join .section-title, #join .section-desc { color: #fff; }
+#policy .section-desc, #join .section-desc { opacity: 0.95; }
+#policy .giant-bg, #join .giant-bg { color: rgba(255, 255, 255, 0.08); }
+#policy .policy-card { box-shadow: 0 10px 30px rgba(0, 50, 90, 0.12); }
+
+/* ---------- 活動報告（白） ---------- */
+.activity-subtitle { color: var(--ocean-dark); }
+.activity-subdesc, .q-note { color: var(--ink-soft); }
+.activity-tag { color: var(--ocean); border-color: var(--ocean); }
+#noteBlock .channel-all { color: var(--ocean); border-color: var(--ocean); }
+
+.q-card { background: #fff; border: 1px solid var(--line-soft); }
+.q-card:hover, .q-card[open] { border-color: var(--ocean); box-shadow: 0 6px 20px rgba(0, 88, 132, 0.08); }
+.q-gikai { color: var(--ink-soft); }
+.q-card-title { color: var(--ink); }
+.q-arrow { color: var(--ocean); }
+.st-asked  { color: var(--ink-soft); border: 1px solid #b7c6d1; }
+.st-review { color: var(--ocean-dark); border: 1px solid var(--ocean); }
+.st-moving { background: var(--ocean); color: #fff; }
+.st-done   { background: var(--sun); color: var(--sun-ink); box-shadow: 0 0 0 2px rgba(255, 225, 77, 0.35); }
+.q-q .q-label { background: #dff1fa; color: var(--ocean-dark); }
+.q-a .q-label { background: #eef2f5; color: var(--ink-soft); }
+.q-f .q-label { background: var(--sun); color: var(--sun-ink); } /* 「その後」＝変化の報告 */
+.q-q > span:last-child { color: var(--ink); }
+.q-a > span:last-child { color: var(--ink-soft); }
+.q-f > span:last-child { color: var(--ink); font-weight: 700; }
+
+.note-card { background: #fff; border: 1px solid var(--line-soft); }
+.note-card:hover { border-color: var(--ocean); box-shadow: 0 6px 20px rgba(0, 88, 132, 0.08); }
+.note-thumb { background: var(--band-soft); }
+.note-thumb-empty { color: var(--ocean); }
+.note-card-title { color: var(--ink); }
+.note-card-date { color: var(--ink-soft); }
+
+/* ---------- 仲間募集（空色の帯の上に白いカードとフォーム） ---------- */
+#join .join-card { background: #fff; border: 0; box-shadow: 0 10px 30px rgba(0, 50, 90, 0.12); }
+#join .join-num { color: var(--ocean); }
+.join-form { background: #fff; border: 0; border-radius: 6px; box-shadow: 0 14px 40px rgba(0, 50, 90, 0.18); color-scheme: light; }
+.jf-field > span { color: var(--ink); font-weight: 700; }
+.jf-field em, .jf-consent em { color: #fff; background: var(--ocean); border-radius: 3px; padding: 1px 6px; font-weight: 700; }
+.jf-field input, .jf-field select, .jf-field textarea { background-color: #f7fbfd; border: 1px solid #bcdbe8; color: var(--ink); }
+.jf-field input::placeholder, .jf-field textarea::placeholder { color: #8a9bab; }
+.jf-field input:focus, .jf-field select:focus, .jf-field textarea:focus { background-color: #fff; border-color: var(--ocean); box-shadow: 0 0 0 3px rgba(0, 126, 184, 0.15); }
+.jf-field select, .jf-field select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23007eb8' stroke-width='2'/%3E%3C/svg%3E");
+}
+.jf-field select option { background: #fff; color: var(--ink); }
+.jf-field select option:disabled { color: #8a9bab; }
+.jf-field select:invalid, .jf-field select:has(option:checked:disabled) { color: #8a9bab; }
+.jf-checks label { color: var(--ink); }
+.jf-checks label:has(input:checked) { color: var(--ocean-dark); font-weight: 700; }
+.jf-consent { color: var(--ink-soft); }
+.jf-field.is-invalid input, .jf-field.is-invalid select, .jf-field.is-invalid textarea,
+.jf-consent.is-invalid { border-color: #d64545; box-shadow: 0 0 0 1px #d64545; }
+.jf-status.ok { color: #0f7b5f; font-weight: 700; }
+.jf-status.err { color: #c0392b; font-weight: 700; }
+
+/* ---------- お問い合わせ（ごく薄い空色） ---------- */
+.section-contact { background: var(--band-soft); color: var(--ink); }
+.section-contact .section-en { color: var(--ocean); }
+.section-contact .section-title { color: var(--ocean-dark); }
+.section-contact .section-desc { color: var(--ink-soft); }
+.section-contact .giant-bg { color: rgba(0, 126, 184, 0.05); }
+.sns-card { background: #fff; border: 1px solid var(--line-soft); }
+.sns-card:hover { background: #fff; border-color: var(--ocean); box-shadow: 0 8px 24px rgba(0, 88, 132, 0.1); }
+.sns-name { color: var(--ocean-dark); }
+.sns-desc { color: var(--ink-soft); }
+.sns-arrow { color: var(--ocean); }
