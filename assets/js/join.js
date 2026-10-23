@@ -9,10 +9,30 @@ var GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycby2KsjRXcdyK7YuSR0f5
   var status = document.getElementById("joinStatus");
   var btn = form.querySelector(".jf-submit");
 
+  // 入力し直したら赤枠を消す
+  ["input", "change"].forEach(function (type) {
+    form.addEventListener(type, function (e) {
+      var box = e.target.closest(".is-invalid");
+      if (box && e.target.checkValidity()) box.classList.remove("is-invalid");
+    });
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    // 未入力の必須項目を赤枠で示し、送信ボタンの下に項目名を出す（ブラウザの吹き出しはスマホで見落としやすいため）
+    form.querySelectorAll(".is-invalid").forEach(function (el) { el.classList.remove("is-invalid"); });
+    var bad = Array.prototype.filter.call(form.elements, function (el) { return el.willValidate && !el.checkValidity(); });
+    if (bad.length) {
+      var names = bad.map(function (el) {
+        var box = el.closest(".jf-field, .jf-consent");
+        if (box) box.classList.add("is-invalid");
+        if (el.name === "consent") return "個人情報の取り扱いへの同意";
+        var label = box && box.querySelector("span");
+        return label ? label.childNodes[0].textContent.trim() : el.name;
+      });
+      status.className = "jf-status err";
+      status.textContent = "未入力・未選択の項目があります：" + names.join("、");
+      bad[0].focus();
       return;
     }
     if (!GAS_ENDPOINT) {
