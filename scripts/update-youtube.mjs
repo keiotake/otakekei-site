@@ -6,12 +6,16 @@ const UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
 const get=async url=>{const r=await fetch(url,{headers:{'User-Agent':UA,'Accept-Language':'ja'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('YouTube HTTP '+r.status+' '+url);return r.text();};
 const valid=v=>/^[\w-]{11}$/.test(v.id||'')&&v.title&&Number.isFinite(Date.parse(v.published));
 
-// 1. RSS（2026年10月時点で404を返すことがあるため、だめなら 2. へ）
+// サイトに載せるのは横動画だけ（ショートは載せない：大竹さんの方針 2026-10-28）
+// 予備: RSS（ショートも混ざるので、リンクが /shorts/ のもの・題名に #shorts があるものを除く。404を返すこともある）
 async function fromRss(){
   const xml=await get('https://www.youtube.com/feeds/videos.xml?channel_id='+channel);
-  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([,entry])=>({id:entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1],title:decode(entry.match(/<title>([\s\S]*?)<\/title>/)?.[1]||''),published:entry.match(/<published>(.*?)<\/published>/)?.[1]}));
+  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)]
+    .filter(([,entry])=>!/\/shorts\//.test(entry.match(/<link[^>]*href="([^"]+)"/)?.[1]||''))
+    .map(([,entry])=>({id:entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1],title:decode(entry.match(/<title>([\s\S]*?)<\/title>/)?.[1]||''),published:entry.match(/<published>(.*?)<\/published>/)?.[1]}))
+    .filter(v=>!/#shorts?\b/i.test(v.title));
 }
-// 2. チャンネルの「動画」ページを直接読む。公開日は前回の一覧から引き継ぎ、新しい動画だけ動画ページで調べる
+// 優先: チャンネルの「動画」タブ（横動画だけが並ぶ）を直接読む。公開日は前回の一覧から引き継ぎ、新しい動画だけ動画ページで調べる
 async function fromChannelPage(known){
   const html=await get('https://www.youtube.com/channel/'+channel+'/videos');
   const m=html.match(/var ytInitialData = (\{.*?\});<\/script>/s);
@@ -39,7 +43,7 @@ let old=null;
 try{old=JSON.parse(await readFile(target,'utf8'));}catch{}
 const known=new Map((old?.videos||[]).map(v=>[v.id,v.published]));
 let videos=[],errors=[];
-for(const [name,load] of [['RSS',fromRss],['チャンネルページ',()=>fromChannelPage(known)]]){
+for(const [name,load] of [['チャンネルページ',()=>fromChannelPage(known)],['RSS',fromRss]]){
   try{
     videos=(await load()).filter(valid).sort((a,b)=>Date.parse(b.published)-Date.parse(a.published)).slice(0,12);
     if(videos.length){console.log(name+'から取得');break;}
