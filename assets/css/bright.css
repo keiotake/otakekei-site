@@ -119,3 +119,8 @@
 .debate-card p:not(.debate-meta) { color: var(--ink); font-size: 14px; line-height: 1.85; flex: 1; }
 .debate-card a { margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--ocean); text-decoration: underline; }
 @media (max-width: 768px) { .debate-list { grid-template-columns: 1fr; } }
+
+/* ---------- プロフィール：会派と委員会 ---------- */
+.profile-roles { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin-top: 20px; padding: 16px 18px; background: #fff; border: 1px solid var(--line-soft); border-radius: 6px; font-size: 14px; line-height: 1.8; }
+.profile-roles dt { color: var(--ocean); font-weight: 700; white-space: nowrap; }
+.profile-roles dd { margin: 0; color: var(--ink); }
