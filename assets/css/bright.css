@@ -109,3 +109,13 @@
 .policy-now li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--ocean); }
 .policy-link { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--ocean-dark); border-bottom: 1px solid currentColor; }
 .policy-link:hover { color: var(--ocean); }
+
+/* ---------- 活動報告：会派を代表した討論 ---------- */
+.debate-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.debate-card { background: #fff; border: 1px solid var(--line-soft); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; }
+.debate-meta { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; }
+.debate-meta span { color: var(--ocean-dark); font-weight: 700; border: 1px solid var(--ocean); border-radius: 999px; padding: 1px 9px; margin-left: 4px; }
+.debate-card h4 { color: var(--ocean-dark); font-size: 16px; line-height: 1.6; margin: 8px 0 6px; }
+.debate-card p:not(.debate-meta) { color: var(--ink); font-size: 14px; line-height: 1.85; flex: 1; }
+.debate-card a { margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--ocean); text-decoration: underline; }
+@media (max-width: 768px) { .debate-list { grid-template-columns: 1fr; } }
