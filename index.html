@@ -78,7 +78,7 @@
         <p class="hero-sub">伊東に生まれ、伊東で育つ。<br>市民の声を、市政のまんなかへ届ける市議会議員です。</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#policy">政策を見る<i class="arrow"></i></a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">活動を見る</a>
+          <a class="btn btn-ghost" href="https://note.com/otake_kei" target="_blank" rel="noopener">最新の状況を見る</a>
         </div>
       </div>
 
@@ -88,17 +88,17 @@
       </figure>
     </div>
 
-    <a class="hero-news" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">
+    <!-- 最新のnote記事（activity.js が note.json から差し替える。読めないときはnoteのトップへ） -->
+    <a class="hero-news" id="heroNews" href="https://note.com/otake_kei" target="_blank" rel="noopener">
       <span class="hero-news-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round">
-          <rect x="3" y="3" width="18" height="18" rx="5.2"/>
-          <circle cx="12" cy="12" r="4.2"/>
-          <circle cx="17.2" cy="6.8" r="1.15" fill="#fff" stroke="none"/>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/>
+          <path d="M14 7l3 3"/>
         </svg>
       </span>
       <div class="hero-news-body">
-        <span class="hero-news-label">LATEST</span>
-        <p>最新の活動はInstagramで発信中</p>
+        <span class="hero-news-label" id="heroNewsLabel">LATEST NOTE</span>
+        <p id="heroNewsTitle">最新の活動は、noteで毎朝お届けしています</p>
       </div>
       <span class="hero-news-arrow">→</span>
     </a>
@@ -111,7 +111,7 @@
 
   <section id="channel" class="channel-section" aria-labelledby="channel-heading">
     <div class="container channel-heading-row">
-      <div><p class="channel-kicker">OTAKE KEI CHANNEL</p><h2 id="channel-heading">伊東のいまを、動画で。</h2><p>議会のこと、暮らしのこと。大竹けいが分かりやすくお届けします。</p></div>
+      <div><p class="channel-kicker">OTAKE KEI CHANNEL</p><h2 id="channel-heading">伊東のいまを、動画で。</h2><p>伊東市政のこと、大竹けいの考え。誰が見ても分かるように、動画でお届けします。</p></div>
       <a class="channel-all" href="https://www.youtube.com/@otake-kei" target="_blank" rel="noopener">YouTubeチャンネルへ <span aria-hidden="true">↗</span></a>
     </div>
     <div class="container channel-content">
@@ -207,7 +207,7 @@
         <div class="activity-subhead activity-subhead-row">
           <div>
             <h3 class="activity-subtitle">毎朝、生絞りでお届け。「大竹けいの生絞りnote」</h3>
-            <p class="activity-subdesc">伊東市政やまちのニュースを分かりやすく。プライベートなことや考え方も、赤裸々に。できる限り毎朝早朝、起きてすぐの"生絞り"でお届けしています。新しい記事は自動でここに並びます。</p>
+            <p class="activity-subdesc">議会や市政の最新の状況は、noteでいちばん早くお伝えしています。プライベートなことや考え方も、赤裸々に。できる限り毎朝早朝、起きてすぐの"生絞り"でお届けしています。新しい記事は自動でここに並びます。</p>
           </div>
           <a class="channel-all" href="https://note.com/otake_kei" target="_blank" rel="noopener">noteへ <span aria-hidden="true">↗</span></a>
         </div>
@@ -217,8 +217,8 @@
       <div class="activity-list" data-reveal>
         <a class="activity-card activity-card-feature" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">
           <span class="activity-tag">UPDATES</span>
-          <h3 class="activity-title">日々の動きは、Instagramで発信中</h3>
-          <p class="activity-text">議会の報告や現場の様子は、Instagramでもお届けしています。</p>
+          <h3 class="activity-title">伊東市政を、Instagramで分かりやすく</h3>
+          <p class="activity-text">市政の仕組みや大竹けいの考えを、誰が見ても分かるように、写真と図でまとめています。</p>
           <span class="activity-link">Instagramを見る →</span>
         </a>
       </div>
@@ -363,17 +363,17 @@
       <div class="sns-grid" data-reveal>
         <a class="sns-card" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">
           <span class="sns-name">Instagram</span>
-          <span class="sns-desc">活動報告・市政解説（メイン発信）</span>
+          <span class="sns-desc">伊東市政と大竹けいの考えを、分かりやすく</span>
           <span class="sns-arrow">→</span>
         </a>
         <a class="sns-card" href="https://www.youtube.com/@otake-kei" target="_blank" rel="noopener">
           <span class="sns-name">YouTube</span>
-          <span class="sns-desc">動画で見る活動記録</span>
+          <span class="sns-desc">伊東市政と大竹けいの考えを、動画で分かりやすく</span>
           <span class="sns-arrow">→</span>
         </a>
         <a class="sns-card" href="https://note.com/otake_kei" target="_blank" rel="noopener">
           <span class="sns-name">note</span>
-          <span class="sns-desc">市政のニュースを毎朝、生絞りで分かりやすく</span>
+          <span class="sns-desc">最新の状況を、毎朝いちばん早く</span>
           <span class="sns-arrow">→</span>
         </a>
         <a class="sns-card" href="https://www.facebook.com/profile.php?id=100005135414717" target="_blank" rel="noopener">
@@ -402,7 +402,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <script src="assets/data/questions.js?v=20261009" defer></script>
-<script src="assets/js/activity.js?v=20261009" defer></script>
+<script src="assets/js/activity.js?v=20261028" defer></script>
 <script src="assets/js/drag-scroll.js" defer></script>
 <script src="assets/js/main.js?v=20260923b" defer></script>
 <script src="assets/js/join.js?v=20261023" defer></script>

@@ -74,10 +74,18 @@
     a.textContent = 'noteで最新記事を読む ↗';
     p.append(a); rail.append(p);
   }
+  // ファーストビュー右下の小窓に、いちばん新しいnote記事を出す（最新の状況はnoteで伝える方針）
+  function showLatestInHero(p) {
+    var box = document.getElementById('heroNews');
+    if (!box || !p || !p.url) return;
+    box.href = p.url;
+    document.getElementById('heroNewsLabel').textContent = 'LATEST NOTE　' + fmtDate(p.published);
+    document.getElementById('heroNewsTitle').textContent = p.title;
+  }
   fetch('assets/data/note.json', { cache: 'no-cache', signal: AbortSignal.timeout(10000) })
     .then(function (r) { if (!r.ok) throw Error('note feed unavailable'); return r.json(); })
     .then(function (data) {
-      if (data.posts && data.posts.length) renderNotes(data.posts); else noteFallback();
+      if (data.posts && data.posts.length) { renderNotes(data.posts); showLatestInHero(data.posts[0]); } else noteFallback();
     })
     .catch(noteFallback);
 })();
