@@ -98,3 +98,14 @@
 /* スマホでは見出しやボタンが折り返して高くなるため、青い帯を「固定の高さ」ではなく
    欄の下から測って、動画の写真の途中まで届くようにする（白地に白文字で消えるのを防ぐ） */
 @media (max-width: 768px) { .channel-section { background: linear-gradient(var(--ocean) 0 calc(100% - 250px), #fff calc(100% - 250px)); } }
+
+/* ---------- 政策カード：「いま取り組んでいること」と、活動報告への導線 ---------- */
+.policy-card > p { flex: none; }
+.policy-now { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+.policy-card > p + .policy-now { margin-top: 18px; }
+.policy-now-label { font-size: 12px; font-weight: 700; color: var(--ocean); letter-spacing: 0.08em; margin-bottom: 8px; }
+.policy-now ul { list-style: none; padding: 0; margin: 0; }
+.policy-now li { position: relative; padding-left: 1.1em; font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 4px; }
+.policy-now li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--ocean); }
+.policy-link { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--ocean-dark); border-bottom: 1px solid currentColor; }
+.policy-link:hover { color: var(--ocean); }
