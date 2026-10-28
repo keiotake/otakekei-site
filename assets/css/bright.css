@@ -91,3 +91,10 @@
 .sns-name { color: var(--ocean-dark); }
 .sns-desc { color: var(--ink-soft); }
 .sns-arrow { color: var(--ocean); }
+
+/* ---------- 動画欄：YouTubeとInstagramのボタンを並べる ---------- */
+.channel-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 768px) { .channel-links { justify-content: flex-start; } .channel-links .channel-all { margin-top: 14px; } }
+/* スマホでは見出しやボタンが折り返して高くなるため、青い帯を「固定の高さ」ではなく
+   欄の下から測って、動画の写真の途中まで届くようにする（白地に白文字で消えるのを防ぐ） */
+@media (max-width: 768px) { .channel-section { background: linear-gradient(var(--ocean) 0 calc(100% - 250px), #fff calc(100% - 250px)); } }

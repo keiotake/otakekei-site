@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="assets/css/style.css?v=20261023">
   <link rel="stylesheet" href="assets/css/channel.css?v=20261009">
   <link rel="stylesheet" href="assets/css/ocean-refresh.css?v=20261023">
-  <link rel="stylesheet" href="assets/css/bright.css?v=20261023">
+  <link rel="stylesheet" href="assets/css/bright.css?v=20261028b">
   <script src="assets/js/site-config.js" defer></script>
   <script src="assets/js/channel.js?v=20260923" defer></script>
 </head>
@@ -109,22 +109,6 @@
       <span class="scroll-cue-bar"></span>
     </div>
   </section>
-
-  <section id="channel" class="channel-section" aria-labelledby="channel-heading">
-    <div class="container channel-heading-row">
-      <div><p class="channel-kicker">OTAKE KEI CHANNEL</p><h2 id="channel-heading">伊東のいまを、動画で。</h2><p>伊東市政のこと、大竹けいの考え。誰が見ても分かるように、動画でお届けします。</p></div>
-      <a class="channel-all" href="https://www.youtube.com/@otake-kei" target="_blank" rel="noopener">YouTubeチャンネルへ <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="container channel-content">
-      <div class="video-toolbar"><p>新着動画 <span>YOUTUBE</span></p><div><button type="button" id="videoPrev" aria-label="前の動画へ">←</button><button type="button" id="videoNext" aria-label="次の動画へ">→</button></div></div>
-      <div id="videoRail" class="video-rail" role="list" aria-label="新着動画一覧"><p class="video-status" role="status">動画を読み込んでいます。<a href="https://www.youtube.com/@otake-kei">YouTubeで見る ↗</a></p></div>
-      <noscript><p>最新の動画は<a href="https://www.youtube.com/@otake-kei">YouTubeチャンネル</a>でご覧いただけます。</p></noscript>
-    </div>
-  </section>
-  <dialog id="videoDialog" class="video-dialog" aria-labelledby="videoDialogTitle">
-    <div class="video-dialog-bar"><h2 id="videoDialogTitle">動画を見る</h2><button id="videoClose" type="button" aria-label="動画を閉じる">×</button></div>
-    <div id="videoPlayer"></div><a id="videoExternal" target="_blank" rel="noopener">YouTubeで見る ↗</a>
-  </dialog>
 
   <!-- ============ MESSAGE ============ -->
   <section class="section section-light" id="message">
@@ -225,6 +209,22 @@
       </div>
     </div>
   </section>
+
+  <section id="channel" class="channel-section" aria-labelledby="channel-heading">
+    <div class="container channel-heading-row">
+      <div><p class="channel-kicker">OTAKE KEI CHANNEL</p><h2 id="channel-heading">伊東市政を、動画で分かりやすく。</h2><p>伊東市政のこと、大竹けいの考え。誰が見ても分かるように、動画でお届けします。</p></div>
+      <div class="channel-links"><a class="channel-all" href="https://www.youtube.com/@otake-kei" target="_blank" rel="noopener">YouTubeチャンネルへ <span aria-hidden="true">↗</span></a><a class="channel-all" href="https://www.instagram.com/kei_otake/" target="_blank" rel="noopener">Instagramを見る <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="container channel-content">
+      <div class="video-toolbar"><p>新着動画 <span>YOUTUBE</span></p><div><button type="button" id="videoPrev" aria-label="前の動画へ">←</button><button type="button" id="videoNext" aria-label="次の動画へ">→</button></div></div>
+      <div id="videoRail" class="video-rail" role="list" aria-label="新着動画一覧"><p class="video-status" role="status">動画を読み込んでいます。<a href="https://www.youtube.com/@otake-kei">YouTubeで見る ↗</a></p></div>
+      <noscript><p>最新の動画は<a href="https://www.youtube.com/@otake-kei">YouTubeチャンネル</a>でご覧いただけます。</p></noscript>
+    </div>
+  </section>
+  <dialog id="videoDialog" class="video-dialog" aria-labelledby="videoDialogTitle">
+    <div class="video-dialog-bar"><h2 id="videoDialogTitle">動画を見る</h2><button id="videoClose" type="button" aria-label="動画を閉じる">×</button></div>
+    <div id="videoPlayer"></div><a id="videoExternal" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+  </dialog>
 
   <!-- ============ PROFILE ============ -->
   <section class="section section-light" id="profile">
